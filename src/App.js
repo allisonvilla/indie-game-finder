@@ -5,6 +5,7 @@ import axios from 'axios';
 function App() {
 	// suggestedGames will be displayed to the user
 	const [suggestedGames, setSuggestedGames] = useState([]);
+
 	// Stateful variables for the user's choices from the form component
 	const [userPlatform, setUserPlatform] = useState('pc');
 	const [userGenre, setUserGenre] = useState('action');
@@ -17,14 +18,16 @@ function App() {
 		const apiKey = `92bb52f637714b219136e934ac1b2969`;
 
 		const endpoints = [
-            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&genres=indie&metacritic=90,100&tags=${userTags}&page=1`,
-            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&genres=indie&metacritic=90,100&tags=${userTags}&page=2`,
-            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&genres=indie&metacritic=90,100&tags=${userTags}&page=3`,
+            // These are three endpoints for three pages of data
+            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&genres=indie&metacritic=80,100&tags=${userTags}`,
+            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&page=2&genres=indie&metacritic=80,100&tags=${userTags}`,
+            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&page=3&genres=indie&metacritic=80,100&tags=${userTags}`,
         ]; 
 
 		axios.all(endpoints.map((endpoint) => axios.get(endpoint)))
 		// Push each game object from each results array into the initialResults array
             .then((apiData) => {
+				console.log(apiData);
 				apiData.forEach((resultsArray) => {
 					resultsArray.data.results.forEach((gameObject) => {
                         initialResults.push(gameObject);
