@@ -7,11 +7,11 @@ function App() {
 	const [suggestedGames, setSuggestedGames] = useState([]);
 
 	// Stateful variables for the user's choices from the form component
-	const [userPlatform, setUserPlatform] = useState('pc');
+	const [userPlatform, setUserPlatform] = useState('4');
 	const [userGenre, setUserGenre] = useState('action');
 	const [userTags, setUserTags] = useState(['singleplayer','atmospheric']); 
 
-	// An array that will hold data returned by the API that match the user's choice of tags - these will be further filtered down
+	// An array that will hold data returned by the API that match the user's choice of platform and tags - these will be further filtered down
 	const initialResults = [];
 
 	useEffect(() => {
@@ -19,9 +19,9 @@ function App() {
 
 		const endpoints = [
             // These are three endpoints for three pages of data
-            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&genres=indie&metacritic=80,100&tags=${userTags}`,
-            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&page=2&genres=indie&metacritic=80,100&tags=${userTags}`,
-            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&page=3&genres=indie&metacritic=80,100&tags=${userTags}`,
+            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&genres=indie&metacritic=80,100&tags=${userTags}&platforms=${userPlatform}`,
+            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&genres=indie&metacritic=80,100&tags=${userTags}&platforms=${userPlatform}&page=2`,
+            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&genres=indie&metacritic=80,100&tags=${userTags}&platforms=${userPlatform}&page=3`,
         ]; 
 
 		axios.all(endpoints.map((endpoint) => axios.get(endpoint)))
@@ -39,12 +39,7 @@ function App() {
 		// When I'm done creating the form component, I'll pass userChoiceTags into the dependency array below
 	}, []); 
 
-	// The API will only return maximum 40 results on a single page, requiring another url to see the next page - this will make it hard to search the entire database for games that match the user's chosen parameters
-		// Narrow the results with the user's chosen tags, then filter for chosen genres with the data returned after that
-		// I can also narrow the results by rating
-			// Remember that the API will return every game with any of the chosen tags, not just games with all of the chosen tags
-		// Make multiple API calls to return the rest of the data, push into a new array that will be responsible for holding the results of all the data 
-		// Compare the user's chosen genres and tags with the games within the new array 
+	// Compare the user's chosen genres and tags with the games within the new array 
 
 	return (
 		<div className="App">
