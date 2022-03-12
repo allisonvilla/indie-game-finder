@@ -10,19 +10,30 @@ function App() {
 	const [userGenre, setUserGenre] = useState('action');
 	const [userTags, setUserTags] = useState(['singleplayer','atmospheric']); 
 
-	// An array that will hold data returned by the API that match the user's choice of tags 
-	const tagResults = [];
+	// An array that will hold data returned by the API that match the user's choice of tags - these will be further filtered down
+	const initialResults = [];
 
 	useEffect(() => {
+		const apiKey = `92bb52f637714b219136e934ac1b2969`;
+
 		const endpoints = [
-            `https://api.rawg.io/api/games?key=92bb52f637714b219136e934ac1b2969&page_size=40&ordering=-metacritic&genres=indie&metacritic=90&tags=${userTags}&page=1`,
-            `https://api.rawg.io/api/games?key=92bb52f637714b219136e934ac1b2969&page_size=40&ordering=-metacritic&genres=indie&metacritic=90&tags=${userTags}&page=2`,
-            `https://api.rawg.io/api/games?key=92bb52f637714b219136e934ac1b2969&page_size=40&ordering=-metacritic&genres=indie&metacritic=90&tags=${userTags}&page=3`,
+            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&genres=indie&metacritic=90,100&tags=${userTags}&page=1`,
+            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&genres=indie&metacritic=90,100&tags=${userTags}&page=2`,
+            `https://api.rawg.io/api/games?key=${apiKey}&page_size=40&ordering=-metacritic&genres=indie&metacritic=90,100&tags=${userTags}&page=3`,
         ]; 
 
 		axios.all(endpoints.map((endpoint) => axios.get(endpoint)))
-            .then((data) => console.log(data));
-		// When I'm done creating the form component, I'll eventually pass in userChoiceTags into the dependency array below
+		// Push each game object from each results array into the initialResults array
+            .then((apiData) => {
+				apiData.forEach((resultsArray) => {
+					resultsArray.data.results.forEach((gameObject) => {
+                        initialResults.push(gameObject);
+                    });
+				});
+			})
+			.then(console.log(initialResults));
+
+		// When I'm done creating the form component, I'll pass userChoiceTags into the dependency array below
 	}, []); 
 
 	// The API will only return maximum 40 results on a single page, requiring another url to see the next page - this will make it hard to search the entire database for games that match the user's chosen parameters
