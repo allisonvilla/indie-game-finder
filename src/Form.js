@@ -14,10 +14,12 @@ const Form = (props) => {
         setGenreValue(event.target.value);
     }
 
-    // This might not work
-    // Might to push the checked values into an array first and then set that as tagsValue
+    // An array to hold the user's currently checked values
+    const checkedValues = [];
+
     const changeTags = (event) => {
-        setTagsValue(event.target.value); 
+        checkedValues.push(event.target.value); 
+        setTagsValue(checkedValues);
     }
 
     // Submit event for the form 
@@ -71,6 +73,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="singleplayer"
                     value="singleplayer"
+                    id="singleplayer" 
                     onChange={changeTags}
                 />
                 <label htmlFor="singleplayer">Singleplayer</label>
@@ -79,6 +82,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="multiplayer"
                     value="multiplayer"
+                    id="multiplayer" 
                     onChange={changeTags}
                 />
                 <label htmlFor="multiplayer">Multiplayer</label>
@@ -87,6 +91,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="great-soundtrack"
                     value="great-soundtrack"
+                    id="great-soundtrack" 
                     onChange={changeTags}
                 />
                 <label htmlFor="great-soundtrack">Great Soundtrack</label>
@@ -95,6 +100,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="co-op"
                     value="co-op"
+                    id="co-op" 
                     onChange={changeTags}
                 />
                 <label htmlFor="co-op">Co-op</label>
@@ -103,6 +109,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="story-rich"
                     value="story-rich"
+                    id="story-rich" 
                     onChange={changeTags}
                 />
                 <label htmlFor="story-rich">Story Rich</label>
@@ -111,6 +118,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="exploration"
                     value="exploration"
+                    id="exploration" 
                     onChange={changeTags}
                 />
                 <label htmlFor="exploration">Exploration</label>
@@ -119,6 +127,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="family-friendly"
                     value="family-friendly"
+                    id="family-friendly" 
                     onChange={changeTags}
                 />
                 <label htmlFor="family-friendly">Family Friendly</label>
@@ -127,6 +136,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="peaceful"
                     value="peaceful"
+                    id="peaceful"
                     onChange={changeTags}
                 />
                 <label htmlFor="peaceful">Peaceful</label>
@@ -135,6 +145,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="horror"
                     value="horror"
+                    id="horror"
                     onChange={changeTags}
                 />
                 <label htmlFor="horror">Horror</label>
