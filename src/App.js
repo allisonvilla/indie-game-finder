@@ -1,6 +1,8 @@
 import './App.css';
 import {useEffect, useState} from 'react'; 
 import axios from 'axios';
+// Import components
+import Form from './Form'
 
 function App() {
 	// suggestedGames will be displayed to the user
@@ -36,18 +38,29 @@ function App() {
 			})
 			.then(console.log(initialResults));
 
-		// When I'm done creating the form component, I'll pass userChoiceTags into the dependency array below
+		// When I'm done creating the form component, I'll pass userPlatform into the dependency array below
 	}, []); 
 
-	// Compare the user's chosen genres and tags with the games within the new array 
+	// Create a function that will be passed as props to the Form component and update the userChoices state when called by the Form component
+	const userSelect = (event, chosenPlatform, chosenGenre, chosenTags) => {
+		event.preventDefault(); 
+		setUserPlatform(chosenPlatform);
+		setUserGenre(chosenGenre);
+		setUserTags(chosenTags);
+	}
+
+	// A function that filters through the data returned by the API and returns games that match the user's parameters
 
 	return (
-		<div className="App">
-			<main>
-				<h1>Indie Game Finder</h1>
+        <div className="App">
+            <header>
+                <h1>Indie Game Finder</h1>
+            </header>
+            <main>
+				<Form handleSubmit={userSelect} />
 			</main>
-		</div>
-	);
+        </div>
+    );
 }
 
 export default App;
