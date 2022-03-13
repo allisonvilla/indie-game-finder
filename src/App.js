@@ -41,7 +41,7 @@ function App() {
 		// When I'm done creating the form component, I'll pass userPlatform into the dependency array below
 	}, []); 
 
-	// Create a function that will be passed as props to the Form component and update the userChoices state when called by the Form component
+	// A function that will be passed as props to the Form component and update the stateful variables holding the user's choices
 	const userSelect = (event, chosenPlatform, chosenGenre, chosenTags) => {
 		event.preventDefault(); 
 		setUserPlatform(chosenPlatform);
