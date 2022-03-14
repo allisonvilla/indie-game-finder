@@ -3,7 +3,7 @@ import {useState} from 'react';
 const Form = (props) => {
     const [platformValue, setPlatformValue] = useState('placeholder'); 
     const [genreValue, setGenreValue] = useState('placeholder');
-    const [tagsValue, setTagsValue] = useState(['placeholder',]);
+    const [tagsValue, setTagsValue] = useState(['placeholder']);
 
     // Change events for each of the inputs
     const changePlatform = (event) => {
@@ -14,18 +14,39 @@ const Form = (props) => {
         setGenreValue(event.target.value);
     }
 
-    // An array to hold the user's currently checked values
-    const checkedValues = [];
+    // An array to hold the user's checked values that are to be submitted
+    const checkedTags = [];
 
-    // I need to make this push to the array when checked, and remove from array when unchecked
-    const changeTags = (event) => {
-        checkedValues.push(event.target.value); 
-        console.log(checkedValues);
+    // A function that returns the currently checked values when called
+    const getCheckedValues = () => {
+        const checkedValues = [];
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                checkedValues.push(checkbox.value);
+            }
+        });
+        return checkedValues; 
     }
+
+    // A change event on the checkboxes, which calls getCheckedValues() and pushes its return to the checkedTags array 
+    const changeTags = (event) => {
+        // Run getCheckedValues and store its return in a variable
+        const currentlyChecked = getCheckedValues();
+        // Clear the checkedTags array to ensure that only currently checked values are contained within it
+        checkedTags.splice(0);
+        // Push each tag within currentlyChecked into the checkedTags array
+        currentlyChecked.forEach((tag) => {
+            checkedTags.push(tag);
+        })
+        console.log(checkedTags);
+    };
 
     // Submit event for the form 
     const formSubmit = (event) => {
-        setTagsValue(checkedValues);
+        event.preventDefault();
+        setTagsValue(checkedTags);
         props.handleSubmit(event, platformValue, genreValue, tagsValue);
     }
 
@@ -75,7 +96,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="singleplayer"
                     value="singleplayer"
-                    id="singleplayer" 
+                    id="singleplayer"
                     onChange={changeTags}
                 />
                 <label htmlFor="singleplayer">Singleplayer</label>
@@ -84,7 +105,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="multiplayer"
                     value="multiplayer"
-                    id="multiplayer" 
+                    id="multiplayer"
                     onChange={changeTags}
                 />
                 <label htmlFor="multiplayer">Multiplayer</label>
@@ -93,7 +114,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="great-soundtrack"
                     value="great-soundtrack"
-                    id="great-soundtrack" 
+                    id="great-soundtrack"
                     onChange={changeTags}
                 />
                 <label htmlFor="great-soundtrack">Great Soundtrack</label>
@@ -102,7 +123,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="co-op"
                     value="co-op"
-                    id="co-op" 
+                    id="co-op"
                     onChange={changeTags}
                 />
                 <label htmlFor="co-op">Co-op</label>
@@ -111,7 +132,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="story-rich"
                     value="story-rich"
-                    id="story-rich" 
+                    id="story-rich"
                     onChange={changeTags}
                 />
                 <label htmlFor="story-rich">Story Rich</label>
@@ -120,7 +141,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="exploration"
                     value="exploration"
-                    id="exploration" 
+                    id="exploration"
                     onChange={changeTags}
                 />
                 <label htmlFor="exploration">Exploration</label>
@@ -129,7 +150,7 @@ const Form = (props) => {
                     type="checkbox"
                     name="family-friendly"
                     value="family-friendly"
-                    id="family-friendly" 
+                    id="family-friendly"
                     onChange={changeTags}
                 />
                 <label htmlFor="family-friendly">Family Friendly</label>
@@ -152,7 +173,7 @@ const Form = (props) => {
                 />
                 <label htmlFor="horror">Horror</label>
             </div>
-            <button>Find me a game!</button>
+            <button>Find a game!</button>
         </form>
     );
 }
