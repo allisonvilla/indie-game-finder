@@ -1,4 +1,4 @@
-import {useState} from 'react'; 
+import {useState, useRef} from 'react'; 
 
 const Form = (props) => {
     const [platformValue, setPlatformValue] = useState('placeholder'); 
@@ -20,7 +20,7 @@ const Form = (props) => {
     // A function that returns the currently checked values when called
     const getCheckedValues = () => {
         const checkedValues = [];
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const checkboxes = document.querySelectorAll('.tag-checkbox');
 
         checkboxes.forEach((checkbox) => {
             if (checkbox.checked) {
@@ -93,6 +93,7 @@ const Form = (props) => {
                 </p>
 
                 <input
+                    className="tag-checkbox"
                     type="checkbox"
                     name="singleplayer"
                     value="singleplayer"
@@ -102,6 +103,7 @@ const Form = (props) => {
                 <label htmlFor="singleplayer">Singleplayer</label>
 
                 <input
+                    className="tag-checkbox"
                     type="checkbox"
                     name="multiplayer"
                     value="multiplayer"
@@ -111,6 +113,7 @@ const Form = (props) => {
                 <label htmlFor="multiplayer">Multiplayer</label>
 
                 <input
+                    className="tag-checkbox"
                     type="checkbox"
                     name="great-soundtrack"
                     value="great-soundtrack"
@@ -120,6 +123,7 @@ const Form = (props) => {
                 <label htmlFor="great-soundtrack">Great Soundtrack</label>
 
                 <input
+                    className="tag-checkbox"
                     type="checkbox"
                     name="co-op"
                     value="co-op"
@@ -129,6 +133,7 @@ const Form = (props) => {
                 <label htmlFor="co-op">Co-op</label>
 
                 <input
+                    className="tag-checkbox"
                     type="checkbox"
                     name="story-rich"
                     value="story-rich"
@@ -138,6 +143,7 @@ const Form = (props) => {
                 <label htmlFor="story-rich">Story Rich</label>
 
                 <input
+                    className="tag-checkbox"
                     type="checkbox"
                     name="exploration"
                     value="exploration"
@@ -147,6 +153,7 @@ const Form = (props) => {
                 <label htmlFor="exploration">Exploration</label>
 
                 <input
+                    className="tag-checkbox"
                     type="checkbox"
                     name="family-friendly"
                     value="family-friendly"
@@ -156,6 +163,7 @@ const Form = (props) => {
                 <label htmlFor="family-friendly">Family Friendly</label>
 
                 <input
+                    className="tag-checkbox"
                     type="checkbox"
                     name="peaceful"
                     value="peaceful"
@@ -165,6 +173,7 @@ const Form = (props) => {
                 <label htmlFor="peaceful">Peaceful</label>
 
                 <input
+                    className="tag-checkbox"
                     type="checkbox"
                     name="horror"
                     value="horror"
