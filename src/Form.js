@@ -17,13 +17,15 @@ const Form = (props) => {
     // An array to hold the user's currently checked values
     const checkedValues = [];
 
+    // I need to make this push to the array when checked, and remove from array when unchecked
     const changeTags = (event) => {
         checkedValues.push(event.target.value); 
-        setTagsValue(checkedValues);
+        console.log(checkedValues);
     }
 
     // Submit event for the form 
     const formSubmit = (event) => {
+        setTagsValue(checkedValues);
         props.handleSubmit(event, platformValue, genreValue, tagsValue);
     }
 
@@ -150,6 +152,7 @@ const Form = (props) => {
                 />
                 <label htmlFor="horror">Horror</label>
             </div>
+            <button>Find me a game!</button>
         </form>
     );
 }
