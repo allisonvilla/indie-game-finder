@@ -65,9 +65,9 @@ const Form = (props) => {
             >
                 <option value="">Please select a platform</option>
                 <option value="4">PC</option>
+                <option value="7">Nintendo Switch</option>
                 <option value="1">Xbox One</option>
                 <option value="186">Xbox Series S/X</option>
-                <option value="7">Nintendo Switch</option>
                 <option value="18">PlayStation 4</option>
                 <option value="187">PlayStation 5</option>
             </select>
@@ -83,7 +83,7 @@ const Form = (props) => {
                 <option value="">Please select a genre</option>
                 <option value="adventure">Adventure</option>
                 <option value="action">Action</option>
-                <option value="rpg">RPG</option>
+                <option value="role-playing-games-rpg">RPG</option>
                 <option value="strategy">Strategy</option>
                 <option value="simulation">Simulation</option>
                 <option value="puzzle">Puzzle</option>
@@ -92,8 +92,7 @@ const Form = (props) => {
 
             <div className="tags-checkboxes">
                 <p>
-                    Please select another tag you'd like to add to your
-                    search.
+                    Please select another tag you'd like to add to your search.
                 </p>
 
                 <input
