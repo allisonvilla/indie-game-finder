@@ -50,7 +50,7 @@ function App() {
 
             // A function that takes two arrays as parameters and checks that targetArray includes every value in the checkedArray - returns a boolean value
             const matchChecker = (targetArray, checkedArray) =>
-                checkedArray.every((x) => targetArray.includes(x));
+                checkedArray.every((value) => targetArray.includes(value));
 
             game.tags.forEach((tag) => {
                 tagArray.push(tag.slug);
@@ -79,6 +79,8 @@ function App() {
         // An array that will hold the total contents of each API call
         const apiArray = [];
 
+		// while apiArray.length < certain value && next != null
+
         const endpoints = [
             // These are three endpoints for three pages of data
             `https://api.rawg.io/api/games?key=${apiKey}&page_size=125&ordering=-metacritic&genres=indie&tags=${userTags}&platforms=${userPlatform}`,
@@ -87,8 +89,10 @@ function App() {
         ];
 
         if (initialRender.current) {
+			// If it is the initial render, set initialRender to false
             initialRender.current = false;
         } else {
+			// If it isn't the initial render, make the API call
             axios
                 .all(endpoints.map((endpoint) => axios.get(endpoint)))
                 // Push each game object from each results array into apiArray
