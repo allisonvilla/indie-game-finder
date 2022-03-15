@@ -64,6 +64,11 @@ function App() {
             });
         });
 		// After filtering, randomize a result and pass it as an argument to setSuggestedGame() 
+		const arrayRandomizer = (array) => {
+			const arrayIndex = Math.floor(Math.random() * array.length);
+			return array[arrayIndex]; 
+		}
+		setSuggestedGame(arrayRandomizer(finalResults));
 		console.log(finalResults);
 	}
 
@@ -110,6 +115,8 @@ function App() {
             </header>
             <main>
                 <Form handleSubmit={userSelect} />
+
+				<h2>You should play {suggestedGame.name}</h2>
             </main>
         </div>
     );
