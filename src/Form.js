@@ -48,7 +48,7 @@ const Form = (props) => {
     // Submit event for the form 
     const formSubmit = (event) => {
         event.preventDefault();
-        props.handleSubmit(event, platformValue, genreValue, tagsValue);
+        props.handleSubmit(platformValue, genreValue, tagsValue);
     }
 
     return (
@@ -184,6 +184,26 @@ const Form = (props) => {
                     onChange={changeTags}
                 />
                 <label htmlFor="horror">Horror</label>
+
+                <input
+                    className="tag-checkbox"
+                    type="checkbox"
+                    name="roguelike"
+                    value="roguelike"
+                    id="roguelike"
+                    onChange={changeTags}
+                />
+                <label htmlFor="roguelike">Roguelike</label>
+
+                <input
+                    className="tag-checkbox"
+                    type="checkbox"
+                    name="metroidvania"
+                    value="metroidvania"
+                    id="metroidvania"
+                    onChange={changeTags}
+                />
+                <label htmlFor="metroidvania">Metroidvania</label>
             </div>
             <button action="submit">Find a game!</button>
         </form>

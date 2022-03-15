@@ -17,8 +17,7 @@ function App() {
     const initialRender = useRef(true);
 
     // A function that is passed as props to the Form component and updates the stateful variables holding the user's choices
-    const userSelect = (event, chosenPlatform, chosenGenre, chosenTags) => {
-        event.preventDefault();
+    const userSelect = (chosenPlatform, chosenGenre, chosenTags) => {
         setUserPlatform(chosenPlatform);
         setUserGenre(chosenGenre);
         setUserTags(chosenTags);
@@ -26,36 +25,46 @@ function App() {
 
     // A function that filters through the data returned by the API and returns games that match the user's parameters
 	const gameFinder = (gamesArray) => {
-		const filteredResults = [];
+		// An array that will hold the results from the first filter (genre)
+		const firstFilter = [];
+		// An array that will hold the final filtered results
+		const finalResults = [];
 
-		let matchChecker = (originalArray, checkedArray) =>
-            checkedArray.every((x) => originalArray.includes(x));
-
+		// Filter the results for games that match the user's chosen genre
 		gamesArray.forEach((game) => {
-			// Filter the results for games that match the user's chosen genre
 			game.genres.forEach((genre) => {
 				let genreName = genre.slug; 
 
 				if (genreName.includes(userGenre)) {
-					filteredResults.push(game);
-				}
-			});
-
-			// Filter the results for games that match all of the user's chosen tags
-			game.tags.forEach((tag) => {
-				let tagName = tag.slug;
-				
-				// isMatch isn't working properly
-				let isMatch = matchChecker(tagName, userTags);
-
-				if (isMatch && filteredResults.includes(game) == false) {
-					filteredResults.push(game);
-					console.log('Found some matching tags');
+					firstFilter.push(game);
 				}
 			});
 		});
+
+		console.log(firstFilter);
+
+		// Filter the results for games that match all of the user's chosen tags
+		firstFilter.forEach((game) => {
+			// An array that will hold the tags for each game so that we can compare them to userTags
+            const tagArray = [];
+
+            // A function that takes two arrays as parameters and checks that targetArray includes every value in the checkedArray - returns a boolean value
+            const matchChecker = (targetArray, checkedArray) =>
+                checkedArray.every((x) => targetArray.includes(x));
+
+            game.tags.forEach((tag) => {
+                tagArray.push(tag.slug);
+
+                let isMatch = matchChecker(tagArray, userTags);
+
+                if (isMatch && finalResults.includes(game) == false) {
+                    finalResults.push(game);
+                    console.log('Found some matching tags');
+                }
+            });
+        });
 		// After filtering, randomize a result and pass it as an argument to setSuggestedGame() 
-		console.log(filteredResults);
+		console.log(finalResults);
 	}
 
 	// Using useEffect, make an API call once the user has submitted the form
