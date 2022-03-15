@@ -41,7 +41,6 @@ const Form = (props) => {
         currentlyChecked.forEach((tag) => {
             checkedTags.push(tag);
         })
-        console.log(checkedTags);
         setTagsValue(checkedTags);
     };
 
