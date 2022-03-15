@@ -1,9 +1,10 @@
 import {useState, useRef} from 'react'; 
 
 const Form = (props) => {
-    const [platformValue, setPlatformValue] = useState('placeholder'); 
-    const [genreValue, setGenreValue] = useState('placeholder');
-    const [tagsValue, setTagsValue] = useState(['placeholder']);
+    const [platformValue, setPlatformValue] = useState(''); 
+    const [genreValue, setGenreValue] = useState('');
+    // Default to singleplayer games if the user does not choose any tags
+    const [tagsValue, setTagsValue] = useState(['singleplayer']);
 
     // Change events for each of the inputs
     const changePlatform = (event) => {
@@ -31,7 +32,7 @@ const Form = (props) => {
     }
 
     // A change event on the checkboxes, which calls getCheckedValues() and pushes its return to the checkedTags array 
-    const changeTags = (event) => {
+    const changeTags = () => {
         // Run getCheckedValues and store its return in a variable
         const currentlyChecked = getCheckedValues();
         // Clear the checkedTags array to ensure that only currently checked values are contained within it
@@ -41,12 +42,12 @@ const Form = (props) => {
             checkedTags.push(tag);
         })
         console.log(checkedTags);
+        setTagsValue(checkedTags);
     };
 
     // Submit event for the form 
     const formSubmit = (event) => {
         event.preventDefault();
-        setTagsValue(checkedTags);
         props.handleSubmit(event, platformValue, genreValue, tagsValue);
     }
 
@@ -60,9 +61,10 @@ const Form = (props) => {
                 id="platform"
                 onChange={changePlatform}
                 value={platformValue}
+                required
             >
+                <option value="">Please select a platform</option>
                 <option value="4">PC</option>
-                <option value="5">MacOS</option>
                 <option value="1">Xbox One</option>
                 <option value="186">Xbox Series S/X</option>
                 <option value="7">Nintendo Switch</option>
@@ -76,7 +78,9 @@ const Form = (props) => {
                 id="genre"
                 onChange={changeGenre}
                 value={genreValue}
+                required
             >
+                <option value="">Please select a genre</option>
                 <option value="adventure">Adventure</option>
                 <option value="action">Action</option>
                 <option value="rpg">RPG</option>
@@ -88,7 +92,7 @@ const Form = (props) => {
 
             <div className="tags-checkboxes">
                 <p>
-                    Please select any other tags you'd like to add to your
+                    Please select another tag you'd like to add to your
                     search.
                 </p>
 
@@ -182,7 +186,7 @@ const Form = (props) => {
                 />
                 <label htmlFor="horror">Horror</label>
             </div>
-            <button>Find a game!</button>
+            <button action="submit">Find a game!</button>
         </form>
     );
 }
