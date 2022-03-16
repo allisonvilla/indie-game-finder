@@ -66,6 +66,7 @@ const Form = () => {
             return array[arrayIndex];
         };
         setSuggestedGame(arrayRandomizer(finalResults));
+        // set toGamePage as true to redirect the user to the suggested game's info page
         setToGamePage(true);
     };
 
@@ -150,19 +151,20 @@ const Form = () => {
         currentlyChecked.forEach((tag) => {
             checkedTags.push(tag);
         });
+        // Save the values in checkedTags in state
         setTagsValue(checkedTags);
     };
 
     // Submit event for the form
     const formSubmit = (event) => {
         event.preventDefault();
-        // Store the form values in state
+        // Save the form values in state
         setUserPlatform(platformValue);
         setUserGenre(genreValue);
         setUserTags(tagsValue);
     };
 
-    // This works if the user doesn't hit submit too fast
+    // When toGamePage is set to true, and suggestedGame has a value, redirect to the game info page for the suggested game
     while (toGamePage && suggestedGame.id !== undefined) {
         return <Navigate to={`/${suggestedGame.id}`} />;
     }
