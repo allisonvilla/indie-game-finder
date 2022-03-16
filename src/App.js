@@ -1,9 +1,10 @@
 import './App.css';
-import {useEffect, useState, useRef} from 'react'; 
+import { useEffect, useState, useRef } from 'react'; 
+import { Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 // Import components
 import Form from './Form'; 
-import Results from './Results';
+import GamePage from './GamePage';
 
 function App() {
     // Stateful variable to hold the game that will be displayed to the user
@@ -42,14 +43,12 @@ function App() {
             });
         });
 
-        //console.log(firstFilter);
-
         // Filter the results for games that match all of the user's chosen tags
         firstFilter.forEach((game) => {
             // An array that will hold the tags for each game so that we can compare them to userTags
             const tagArray = [];
 
-            // A function that takes two arrays as parameters and checks that targetArray includes every value in the checkedArray - returns a boolean value
+            // A function that takes two arrays as parameters and checks that targetArray includes every value in checkedArray - returns a boolean value
             const matchChecker = (targetArray, checkedArray) =>
                 checkedArray.every((value) => targetArray.includes(value));
 
@@ -64,13 +63,12 @@ function App() {
                 }
             });
         });
-        // After filtering, randomize a result and pass it as an argument to setSuggestedGame()
+        // After filtering, randomize a result and set it as suggestedGame
         const arrayRandomizer = (array) => {
             const arrayIndex = Math.floor(Math.random() * array.length);
             return array[arrayIndex];
         };
         setSuggestedGame(arrayRandomizer(finalResults));
-        //console.log(finalResults);
     };
 
     // Using useEffect, make an API call once the user has submitted the form
@@ -82,6 +80,7 @@ function App() {
         // A variable that will be used to check if the next page of API data exists
         let isNextNull = false;
 
+        // An asynchronous function that will accept a page number as a parameter and make a request to the API using that page number
         async function getPageOfResults(page) {
             await axios
                 .get(
@@ -94,17 +93,19 @@ function App() {
                     apiData.data.results.forEach((gameObject) => {
                         apiArray.push(gameObject);
                         //console.log(apiArray);
-                        console.log(isNextNull);
+                        //console.log(isNextNull);
                     });
                 });
         }
 
+        // An asynchronous function that will keep track of the current page of API data, whether the next page exists, and make a request for the next page using getPageOfResults() if it does exist
         async function getResults() {
             let page = 1;
             while (apiArray.length < 120 && isNextNull == false) {
                 await getPageOfResults(page);
                 page++;
             }
+            // Call gameFinder() on the apiArray to filter through the results
             gameFinder(apiArray);
         }
 
@@ -114,27 +115,42 @@ function App() {
         } else {
             // If it isn't the initial render, make the API call
             getResults();
-            //.then(gameFinder(apiArray));
         }
-        // Run this side effect when the user submits the form
+    // Run this side effect when the user submits the form
     }, [userTags, userPlatform]);
+
 
     return (
         <div className="App">
-            <header>
-                <h1>Indie Game Finder</h1>
-            </header>
-            <main>
-                <Form handleSubmit={userSelect} />
+            <div className="wrapper">
+                <header>
+                    <h1>Indie Game Finder</h1>
+                    <div className="about-container">
+                        <p>Description text</p>
+                    </div>
+                </header>
 
-                {
-                    suggestedGame
-                        ? <Results />
-                        : null
-                }
-            </main>
+                <main>
+                    <Form handleSubmit={userSelect} />
+                    <GamePage currentGame={suggestedGame} /> 
+
+                    {/* {Object.keys(suggestedGame).length > 0 ? <Results /> : null} */}
+                </main>
+
+                <footer>
+                    <p>Footer text goes here</p>
+                </footer>
+
+                
+                
+            </div>
         </div>
     );
 }
+
+// Routes Planning:
+// - I want the header and the footer to show on every page 
+// - I want the form component to show on the homepage
+// - Each game will have its own link, using its id - when the filter returns a game, it will link to it
 
 export default App;
