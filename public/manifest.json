@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Indie Game Finder",
+  "name": "Indie Game Finder",
   "icons": [
     {
       "src": "favicon.ico",

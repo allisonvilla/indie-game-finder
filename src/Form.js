@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react'; 
+import { useState, useEffect, useRef } from 'react'; 
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -72,10 +72,12 @@ const Form = () => {
 
             // set toGamePage as true to redirect the user to the suggested game's info page
             setToGamePage(true);
+
+            // Add some kind of error handling here when no games are available to be returned to the user
+
         };
 
         const apiKey = `92bb52f637714b219136e934ac1b2969`;
-
         // An array that will hold the total contents of each API call
         const apiArray = [];
         // A variable that will be used to check if the next page of API data exists
@@ -167,14 +169,14 @@ const Form = () => {
     };
 
     // When toGamePage is set to true, and suggestedGame has a value, redirect to the game info page for the suggested game
-    while (toGamePage && suggestedGame.id !== undefined) {
+    while (toGamePage && suggestedGame !== undefined) {
         return <Navigate to={`/${suggestedGame.id}`} />;
     }
 
     return (
         <div className="form-container">
             <form action="" onSubmit={formSubmit}>
-                <h2>What are you looking for?</h2>
+                <h2>Let's find you a game!</h2>
 
                 <label htmlFor="platform">How do you like to play?</label>
                 <select
@@ -186,14 +188,15 @@ const Form = () => {
                 >
                     <option value="">Please select a platform</option>
                     <option value="4">PC</option>
+                    <option value="5">MacOS</option>
                     <option value="7">Nintendo Switch</option>
-                    <option value="1">Xbox One</option>
-                    <option value="186">Xbox Series S/X</option>
                     <option value="18">PlayStation 4</option>
                     <option value="187">PlayStation 5</option>
+                    <option value="1">Xbox One</option>
+                    <option value="186">Xbox Series S/X</option>
                 </select>
 
-                <label htmlFor="genre">What type of games do you like?</label>
+                <label htmlFor="genre">What genre of game do you enjoy?</label>
                 <select
                     name="genre"
                     id="genre"
@@ -213,7 +216,7 @@ const Form = () => {
 
                 <div className="tags-checkboxes">
                     <p>
-                        Please select another tag you'd like to add to your
+                        Please select any tags you'd like to add to your
                         search.
                     </p>
 
@@ -326,8 +329,38 @@ const Form = () => {
                         onChange={changeTags}
                     />
                     <label htmlFor="metroidvania">Metroidvania</label>
+
+                    <input
+                        className="tag-checkbox"
+                        type="checkbox"
+                        name="pixel-graphics"
+                        value="pixel-graphics"
+                        id="pixel-graphics"
+                        onChange={changeTags}
+                    />
+                    <label htmlFor="pixel-graphics">Pixel Graphics</label>
+
+                    <input
+                        className="tag-checkbox"
+                        type="checkbox"
+                        name="retro"
+                        value="retro"
+                        id="retro"
+                        onChange={changeTags}
+                    />
+                    <label htmlFor="retro">Retro</label>
+                    
+                    <input
+                        className="tag-checkbox"
+                        type="checkbox"
+                        name="female-protagonist"
+                        value="female-protagonist"
+                        id="female-protagonist"
+                        onChange={changeTags}
+                    />
+                    <label htmlFor="female-protagonist">Female Protagonist</label>
                 </div>
-                <button action="submit">Find a game!</button>
+                <button action="submit">Find an indie game!</button>
             </form>
         </div>
     );

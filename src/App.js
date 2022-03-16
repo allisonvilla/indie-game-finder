@@ -1,4 +1,4 @@
-import './App.css';
+import './index.css';
 import { Routes, Route } from 'react-router-dom';
 // Import components
 import Form from './Form';
@@ -11,7 +11,8 @@ function App() {
                 <header>
                     <h1>Indie Game Finder</h1>
                     <div className="about-container">
-                        <p>Description text.</p>
+                        <p>Independent (or indie) games are created by individual developers or smaller game studios without the support of larger game publishers. As a result, they're often unique, community-driven, and made with a lot of heart. 💖</p>
+                        <p>Use this app to find a new indie game that suits your tastes! 🎮</p>
                     </div>
                 </header>
 
