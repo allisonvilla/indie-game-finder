@@ -23,55 +23,57 @@ const Form = () => {
     // Stateful variable that triggers the redirect to the game details page - will be changed on form submit
     const [toGamePage, setToGamePage] = useState(false);
 
-    // A function that filters through the data returned by the API and returns games that match the user's parameters
-    const gameFinder = (gamesArray) => {
-        // An array that will hold the results from the first filter (genre)
-        const firstFilter = [];
-        // An array that will hold the final filtered results
-        const finalResults = [];
-
-        // Filter the results for games that match the user's chosen genre
-        gamesArray.forEach((game) => {
-            game.genres.forEach((genre) => {
-                let genreName = genre.slug;
-
-                if (genreName.includes(userGenre)) {
-                    firstFilter.push(game);
-                }
-            });
-        });
-
-        // Filter the results for games that match all of the user's chosen tags
-        firstFilter.forEach((game) => {
-            // An array that will hold the tags for each game so that we can compare them to userTags
-            const tagArray = [];
-
-            // A function that takes two arrays as parameters and checks that targetArray includes every value in checkedArray - returns a boolean value
-            const matchChecker = (targetArray, checkedArray) =>
-                checkedArray.every((value) => targetArray.includes(value));
-
-            game.tags.forEach((tag) => {
-                tagArray.push(tag.slug);
-
-                let isMatch = matchChecker(tagArray, userTags);
-
-                if (isMatch && finalResults.includes(game) === false) {
-                    finalResults.push(game);
-                }
-            });
-        });
-        // After filtering, randomize a result and set it as suggestedGame
-        const arrayRandomizer = (array) => {
-            const arrayIndex = Math.floor(Math.random() * array.length);
-            return array[arrayIndex];
-        };
-        setSuggestedGame(arrayRandomizer(finalResults));
-        // set toGamePage as true to redirect the user to the suggested game's info page
-        setToGamePage(true);
-    };
-
-    // Using useEffect, make an API call once the user has submitted the form
+    // Using useEffect, make an API call once the user has submitted the form, then filter through the data
     useEffect(() => {
+        // A function that filters through the data returned by the API and returns games that match the user's parameters
+        const gameFinder = (gamesArray) => {
+            // An array that will hold the results from the first filter (genre)
+            const firstFilter = [];
+            // An array that will hold the final filtered results
+            const finalResults = [];
+
+            // Filter the results for games that match the user's chosen genre
+            gamesArray.forEach((game) => {
+                game.genres.forEach((genre) => {
+                    let genreName = genre.slug;
+
+                    if (genreName.includes(userGenre)) {
+                        firstFilter.push(game);
+                    }
+                });
+            });
+
+            // Filter the results for games that match all of the user's chosen tags
+            firstFilter.forEach((game) => {
+                // An array that will hold the tags for each game so that we can compare them to userTags
+                const tagArray = [];
+
+                // A function that takes two arrays as parameters and checks that targetArray includes every value in checkedArray - returns a boolean value
+                const matchChecker = (targetArray, checkedArray) =>
+                    checkedArray.every((value) => targetArray.includes(value));
+
+                game.tags.forEach((tag) => {
+                    tagArray.push(tag.slug);
+
+                    let isMatch = matchChecker(tagArray, userTags);
+
+                    if (isMatch && finalResults.includes(game) === false) {
+                        finalResults.push(game);
+                    }
+                });
+            });
+
+            // After filtering, randomize a result and set it as suggestedGame
+            const arrayRandomizer = (array) => {
+                const arrayIndex = Math.floor(Math.random() * array.length);
+                return array[arrayIndex];
+            };
+            setSuggestedGame(arrayRandomizer(finalResults));
+
+            // set toGamePage as true to redirect the user to the suggested game's info page
+            setToGamePage(true);
+        };
+
         const apiKey = `92bb52f637714b219136e934ac1b2969`;
 
         // An array that will hold the total contents of each API call
