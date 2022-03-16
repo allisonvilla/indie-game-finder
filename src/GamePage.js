@@ -2,30 +2,28 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-const GamePage = (props) => {
-    // Stateful variable to hold the game details returned by the API
+const GamePage = () => {
+    // Stateful variables to hold the game details returned by the API
     const [gameDetails, setGameDetails] = useState({});
+    const [stores, setStores] = useState([])
+
+    const {gameId} = useParams();
 
     // Make an API call for the game details
     useEffect(() => {
         const apiKey = `92bb52f637714b219136e934ac1b2969`;
-        // will use useParams for this
-        const gameId = props.currentGame.id;
 
         axios.get(
             `https://api.rawg.io/api/games/${gameId}?key=${apiKey}`
         )
         .then((results) => {
             setGameDetails(results.data);
+            setStores(results.data.stores);
         });
-    }, []);
-
-    console.log(props.currentGame);
+    }, [gameId]);
 
     // Destructure the gameDetails object
-    const { name, stores, released, background_image, description_raw } = gameDetails;
-
-    console.log(stores);
+    const { name, released, background_image, description_raw } = gameDetails;
 
     return (
         <section className="game-page">
@@ -52,6 +50,9 @@ const GamePage = (props) => {
                             return <li key={storeObject.store.id}>{storeObject.store.name}</li>;
                         })}
                     </ul>
+                </div>
+                <div className="back-to-homepage">
+                    <Link to="/">Back</Link>
                 </div>
             </div>
         </section>

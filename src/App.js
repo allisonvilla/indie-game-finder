@@ -57,7 +57,7 @@ function App() {
 
                 let isMatch = matchChecker(tagArray, userTags);
 
-                if (isMatch && finalResults.includes(game) == false) {
+                if (isMatch && finalResults.includes(game) === false) {
                     finalResults.push(game);
                     console.log('Found some matching tags - your filter is still working');
                 }
@@ -92,8 +92,6 @@ function App() {
                     }
                     apiData.data.results.forEach((gameObject) => {
                         apiArray.push(gameObject);
-                        //console.log(apiArray);
-                        //console.log(isNextNull);
                     });
                 });
         }
@@ -101,7 +99,7 @@ function App() {
         // An asynchronous function that will keep track of the current page of API data, whether the next page exists, and make a request for the next page using getPageOfResults() if it does exist
         async function getResults() {
             let page = 1;
-            while (apiArray.length < 120 && isNextNull == false) {
+            while (apiArray.length < 120 && isNextNull === false) {
                 await getPageOfResults(page);
                 page++;
             }
@@ -119,6 +117,15 @@ function App() {
     // Run this side effect when the user submits the form
     }, [userTags, userPlatform]);
 
+    // Temporary results component
+    const Results = () => {
+        return (
+            <>
+                <h2>You should play {suggestedGame.name}</h2>
+                <p>Find out more <Link to={`/${suggestedGame.id}`}>here</Link></p>
+            </>
+        );
+    }
 
     return (
         <div className="App">
@@ -130,27 +137,27 @@ function App() {
                     </div>
                 </header>
 
-                <main>
-                    <Form handleSubmit={userSelect} />
-                    <GamePage currentGame={suggestedGame} /> 
+                <Results />
 
-                    {/* {Object.keys(suggestedGame).length > 0 ? <Results /> : null} */}
-                </main>
-
-                <footer>
-                    <p>Footer text goes here</p>
-                </footer>
-
-                
-                
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <Form
+                                handleSubmit={userSelect}
+                                currentGameId={suggestedGame.id} 
+                            />
+                        }
+                    />
+                    <Route path="/:gameId" element={<GamePage />} />
+                </Routes>
             </div>
+
+            <footer>
+                <p>Footer text goes here</p>
+            </footer>
         </div>
     );
 }
-
-// Routes Planning:
-// - I want the header and the footer to show on every page 
-// - I want the form component to show on the homepage
-// - Each game will have its own link, using its id - when the filter returns a game, it will link to it
 
 export default App;

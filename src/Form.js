@@ -1,10 +1,18 @@
 import {useState, useRef} from 'react'; 
+import { Navigate } from 'react-router-dom';
 
 const Form = (props) => {
     const [platformValue, setPlatformValue] = useState(''); 
     const [genreValue, setGenreValue] = useState('');
     // Default to singleplayer games if the user does not choose any tags
     const [tagsValue, setTagsValue] = useState(['singleplayer']);
+    // Stateful variable that triggers the redirect to the game details page - will be set to true on form submit
+    const [toGamePage, setToGamePage] = useState(false);
+    if (toGamePage) {
+        return <Navigate to={`/${props.currentGameId}`} />;
+    }
+
+    console.log(props.currentGameId);
 
     // Change events for each of the inputs
     const changePlatform = (event) => {
@@ -48,10 +56,11 @@ const Form = (props) => {
     const formSubmit = (event) => {
         event.preventDefault();
         props.handleSubmit(platformValue, genreValue, tagsValue);
+        setToGamePage(true);
     }
 
     return (
-        <form action="" onSubmit={formSubmit}>
+        <form action='' onSubmit={formSubmit}>
             <h2>What are you looking for?</h2>
 
             <label htmlFor="platform">How do you like to play?</label>
