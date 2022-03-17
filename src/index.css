@@ -67,8 +67,10 @@ h2 {
 }
 
 h3 {
-	font-size: 2rem; 
+	font-size: 2.5rem; 
 	font-family: var(--body-font);
+	margin-top: 30px; 
+	margin-bottom: 15px; 
 	text-transform: uppercase;
 }
 
@@ -150,6 +152,56 @@ form button:focus {
 }
 
 /* Game Page */
+.release-date span {
+	font-weight: 500; 
+}
+
+.website {
+	overflow-wrap: break-word;
+}
+
+.website span {
+	font-weight: 500;
+}
+
+.website a {
+	font-weight: 300;
+}
+
+.main-info {
+	display: flex;
+	flex-direction: column; 
+	align-items: center; 
+	margin-top: 40px;
+}
+
+.img-container {
+	width: 80%; 
+	margin-bottom: 25px;
+}
+
+.img-container img {
+	border-radius: 10px;
+}
+
+.store-container p {
+	font-weight: 500; 
+	margin-bottom: 0;
+}
+
+ul.stores {
+	display: flex;
+	flex-wrap: wrap; 
+	list-style: none;
+}
+
+ul.stores li {
+	width: 50%;
+}
+
+.back-to-homepage {
+	margin-top: 50px; 
+}
 
 /* Footer */
 footer {
@@ -168,4 +220,72 @@ footer p {
 
 footer .small-copy {
 	font-size: 0.7rem; 
+}
+
+/* Media Queries */
+@media (max-width: 1100px) {
+	h1 {
+		font-size: 4.2rem;
+	}
+
+	.checkbox-item {
+		width: 33%;
+	}
+}
+
+@media (max-width: 940px) {
+	.checkbox-item {
+		width: 50%; 
+	}
+
+	.img-container {
+		width: 95%;
+	}
+}
+
+@media (max-width: 650px) {
+	html {
+		font-size: 110%; 
+	}
+
+	.wrapper {
+		width: 85%;
+	}
+
+	h1 {
+		font-size: 4rem; 
+	}
+
+	header, .form-container, .game-page {
+		padding: 25px 35px 40px; 
+		margin-top: 50px;
+	}
+}
+
+@media (max-width: 500px) {
+	.wrapper {
+		width: 95%;
+	}
+
+	header, .form-container, .game-page {
+		padding: 25px 30px 40px; 
+		margin-top: 50px;
+	}
+
+	.checkbox-item {
+		width: 100%;
+		font-size: 1.2rem;
+		margin-bottom: 5px;
+	}
+}
+
+@media (max-width: 340px) {
+	select {
+		font-size: 0.95rem; 
+		padding: 10px 10px; 
+	}
+
+	footer .small-copy {
+		font-size: 0.65rem;
+	}
 }

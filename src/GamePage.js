@@ -22,24 +22,30 @@ const GamePage = () => {
     }, [gameId]);
 
     // Destructure the gameDetails object
-    const { name, released, background_image, description } = gameDetails;
+    const { name, released, background_image, description, website } = gameDetails;
 
     return (
         <section className="game-page">
+            <h3>{name}</h3>
+            <p className="release-date">
+                <span>Release Date:</span> {released}
+            </p>
+            <p className="website">
+                <span>Website:</span>{' '}
+                <a href={`${website}`} target="_blank" rel="noreferrer">
+                    {website}
+                </a>
+            </p>
             <div className="main-info">
+                <div className="img-container">
+                    <img src={background_image} alt={`Game art for ${name}`} />
+                </div>
                 <div className="text-container">
-                    <h3>{name}</h3>
-                    <p className="release-date">
-                        <span>Release Date:</span> {released}
-                    </p>
                     <p
                         className="description"
                         // Is this...dangerous?
-                        dangerouslySetInnerHTML={{ __html: description }} 
+                        dangerouslySetInnerHTML={{ __html: description }}
                     ></p>
-                </div>
-                <div className="img-container">
-                    <img src={background_image} alt={`Game art for ${name}`} />
                 </div>
             </div>
             <div className="store-container">
@@ -55,7 +61,7 @@ const GamePage = () => {
                 </ul>
             </div>
             <div className="back-to-homepage">
-                <Link to="/">Back</Link>
+                <span className="emoji">👉</span> <Link to="/">Back</Link>
             </div>
         </section>
     );
