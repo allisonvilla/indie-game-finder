@@ -39,8 +39,8 @@ img {
 
 header, .form-container, .game-page {
 	background-color: var(--section-bg-color); 
-	padding: 20px 50px 30px; 
-	margin-top: 40px;
+	padding: 25px 60px 40px; 
+	margin-top: 50px;
 	border-radius: 10px; 
 }
 
@@ -90,9 +90,64 @@ a:focus {
 	border-bottom: 2px solid var(--accent-color);
 }
 
-/* Header */
-
 /* Form */
+form {
+	display: flex;
+	flex-direction: column; 
+}
+
+label {
+	margin-top: 10px;
+}
+
+select {
+	margin-top: 5px; 
+	font-family: var(--body-font);
+	padding: 10px 20px; 
+	border: 2px solid var(--main-bg-color);
+	background-color: var(--main-bg-color);
+	color: var(--section-bg-color);
+	border-radius: 5px; 
+	transition: 0.3s;
+}
+
+select:hover, 
+select:focus {
+	border: 2px solid var(--accent-color);
+	border-radius: 5px;
+}
+
+.tags-checkboxes {
+	display: flex; 
+	flex-wrap: wrap; 
+	justify-content: space-between;
+}
+
+.checkbox-item {
+	width: 25%;
+}
+
+input[type="checkbox"] {
+	margin-right: 5px;
+}
+
+form button {
+	margin-top: 25px; 
+	font-family: var(--body-font);
+	padding: 15px 30px; 
+	border: 2px solid var(--main-bg-color);
+	background-color: var(--main-bg-color);
+	color: var(--section-bg-color);
+	border-radius: 5px; 
+	transition: 0.3s; 
+}
+
+form button:hover, 
+form button:focus {
+	border: 2px solid var(--accent-color);
+	border-radius: 5px;
+	color: var(--accent-color);
+}
 
 /* Game Page */
 

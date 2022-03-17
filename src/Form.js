@@ -214,151 +214,203 @@ const Form = () => {
                     <option value="platformer">Platformer</option>
                 </select>
 
+                <p>Please select any tags you'd like to add to your search.</p>
                 <div className="tags-checkboxes">
-                    <p>
-                        Please select any tags you'd like to add to your
-                        search.
-                    </p>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="singleplayer"
+                            value="singleplayer"
+                            id="singleplayer"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="singleplayer">Singleplayer</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="singleplayer"
-                        value="singleplayer"
-                        id="singleplayer"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="singleplayer">Singleplayer</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="multiplayer"
+                            value="multiplayer"
+                            id="multiplayer"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="multiplayer">Multiplayer</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="multiplayer"
-                        value="multiplayer"
-                        id="multiplayer"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="multiplayer">Multiplayer</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="great-soundtrack"
+                            value="great-soundtrack"
+                            id="great-soundtrack"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="great-soundtrack">
+                            Great Soundtrack
+                        </label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="great-soundtrack"
-                        value="great-soundtrack"
-                        id="great-soundtrack"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="great-soundtrack">Great Soundtrack</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="co-op"
+                            value="co-op"
+                            id="co-op"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="co-op">Co-op</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="co-op"
-                        value="co-op"
-                        id="co-op"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="co-op">Co-op</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="story-rich"
+                            value="story-rich"
+                            id="story-rich"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="story-rich">Story Rich</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="story-rich"
-                        value="story-rich"
-                        id="story-rich"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="story-rich">Story Rich</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="exploration"
+                            value="exploration"
+                            id="exploration"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="exploration">Exploration</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="exploration"
-                        value="exploration"
-                        id="exploration"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="exploration">Exploration</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="family-friendly"
+                            value="family-friendly"
+                            id="family-friendly"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="family-friendly">Family Friendly</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="family-friendly"
-                        value="family-friendly"
-                        id="family-friendly"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="family-friendly">Family Friendly</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="peaceful"
+                            value="peaceful"
+                            id="peaceful"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="peaceful">Peaceful</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="peaceful"
-                        value="peaceful"
-                        id="peaceful"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="peaceful">Peaceful</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="horror"
+                            value="horror"
+                            id="horror"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="horror">Horror</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="horror"
-                        value="horror"
-                        id="horror"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="horror">Horror</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="roguelike"
+                            value="roguelike"
+                            id="roguelike"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="roguelike">Roguelike</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="roguelike"
-                        value="roguelike"
-                        id="roguelike"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="roguelike">Roguelike</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="metroidvania"
+                            value="metroidvania"
+                            id="metroidvania"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="metroidvania">Metroidvania</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="metroidvania"
-                        value="metroidvania"
-                        id="metroidvania"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="metroidvania">Metroidvania</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="pixel-graphics"
+                            value="pixel-graphics"
+                            id="pixel-graphics"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="pixel-graphics">Pixel Graphics</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="pixel-graphics"
-                        value="pixel-graphics"
-                        id="pixel-graphics"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="pixel-graphics">Pixel Graphics</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="retro"
+                            value="retro"
+                            id="retro"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="retro">Retro</label>
+                    </div>
 
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="retro"
-                        value="retro"
-                        id="retro"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="retro">Retro</label>
-                    
-                    <input
-                        className="tag-checkbox"
-                        type="checkbox"
-                        name="female-protagonist"
-                        value="female-protagonist"
-                        id="female-protagonist"
-                        onChange={changeTags}
-                    />
-                    <label htmlFor="female-protagonist">Female Protagonist</label>
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="female-protagonist"
+                            value="female-protagonist"
+                            id="female-protagonist"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="female-protagonist">
+                            Female Protagonist
+                        </label>
+                    </div>
+
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="open-world"
+                            value="open-world"
+                            id="open-world"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="open-world">Open World</label>
+                    </div>
+
+                    <div className="checkbox-item">
+                        <input
+                            className="tag-checkbox"
+                            type="checkbox"
+                            name="short"
+                            value="short"
+                            id="short"
+                            onChange={changeTags}
+                        />
+                        <label htmlFor="short">Short</label>
+                    </div>
                 </div>
                 <button action="submit">Find an indie game!</button>
             </form>
