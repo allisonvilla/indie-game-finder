@@ -191,6 +191,11 @@ form button.clear-form:focus {
 	flex-direction: column; 
 	align-items: center; 
 	margin-top: 40px;
+} 
+
+.text-container p h2,
+.text-container p h3 {
+	font-size: 1.5rem;
 }
 
 .img-container {

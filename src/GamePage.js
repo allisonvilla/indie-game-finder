@@ -22,7 +22,8 @@ const GamePage = () => {
     }, [gameId]);
 
     // Destructure the gameDetails object
-    const { name, released, background_image, description, website } = gameDetails;
+    const { name, released, background_image, description, website } =
+        gameDetails;
 
     return (
         <section className="game-page">
@@ -30,12 +31,14 @@ const GamePage = () => {
             <p className="release-date">
                 <span>Release Date:</span> {released}
             </p>
-            <p className="website">
-                <span>Website:</span>{' '}
-                <a href={`${website}`} target="_blank" rel="noreferrer">
-                    {website}
-                </a>
-            </p>
+            {website ? (
+                <p className="website">
+                    <span>Website:</span>{' '}
+                    <a href={`${website}`} target="_blank" rel="noreferrer">
+                        {website}
+                    </a>
+                </p>
+            ) : null}
             <div className="main-info">
                 <div className="img-container">
                     <img src={background_image} alt={`Game art for ${name}`} />
