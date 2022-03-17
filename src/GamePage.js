@@ -112,6 +112,7 @@ const GamePage = () => {
                         placeholder="My name"
                         onChange={handleNameChange}
                         value={nameInput}
+                        required 
                     />
                     <label htmlFor="review" className="sr-only">
                         Review Text
@@ -122,7 +123,8 @@ const GamePage = () => {
                         id="review"
                         placeholder="This game was..."
                         onChange={handleReviewChange}
-                        value={reviewInput}
+                        value={reviewInput} 
+                        required 
                     />
                     <button onClick={handleSubmit}>Submit my review</button>
                 </form>
