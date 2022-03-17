@@ -8,7 +8,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 /* Variables */
 :root {
 	/* Fonts */
-	--heading-font: 'Sacramento', cursive;
+	--heading-font: 'Sacramento', serif;
 	--body-font: 'Montserrat', sans-serif;
 	/* Colours */
 	--main-bg-color: #202224;
@@ -133,7 +133,7 @@ input[type="checkbox"] {
 	margin-right: 5px;
 }
 
-form button {
+form button.submit {
 	margin-top: 25px; 
 	font-family: var(--body-font);
 	padding: 15px 30px; 
@@ -142,12 +142,30 @@ form button {
 	color: var(--section-bg-color);
 	border-radius: 5px; 
 	transition: 0.3s; 
+	cursor: pointer;
 }
 
-form button:hover, 
-form button:focus {
+form button.submit:hover, 
+form button.submit:focus {
 	border: 2px solid var(--accent-color);
 	border-radius: 5px;
+	color: var(--accent-color);
+}
+
+form button.clear-form {
+	margin-top: 25px; 
+	border: none;
+	border-bottom: 2px solid transparent; 
+	background-color: transparent;
+	font-family: var(--body-font);
+	cursor: pointer;
+	padding-bottom: 2px;
+	font-weight: 500; 
+	transition: 0.3s; 
+}
+
+form button.clear-form:hover,
+form button.clear-form:focus {
 	color: var(--accent-color);
 }
 

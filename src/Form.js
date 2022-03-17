@@ -10,18 +10,21 @@ const Form = () => {
     const [platformValue, setPlatformValue] = useState('');
     const [genreValue, setGenreValue] = useState('');
     const [tagsValue, setTagsValue] = useState(['singleplayer']);
-        // Default to singleplayer games if the user does not choose any tags
+    // Default to singleplayer games if the user does not choose any tags
 
     // Stateful variables for the user's submitted choices
     const [userPlatform, setUserPlatform] = useState('');
     const [userGenre, setUserGenre] = useState('');
     const [userTags, setUserTags] = useState([]);
 
-    // Use useRef to check if it is the page's initial render - if it is, do not make the API call
-    const initialRender = useRef(true);
-
     // Stateful variable that triggers the redirect to the game details page - will be changed on form submit
     const [toGamePage, setToGamePage] = useState(false);
+
+    // Stateful variables for errors - used to manipulate the render
+    const [noGame, setNoGame] = useState(false);
+
+    // Use useRef to check if it is the page's initial render - if it is, do not make the API call
+    const initialRender = useRef(true);
 
     // Using useEffect, make an API call once the user has submitted the form, then filter through the data
     useEffect(() => {
@@ -73,8 +76,10 @@ const Form = () => {
             // set toGamePage as true to redirect the user to the suggested game's info page
             setToGamePage(true);
 
-            // Add some kind of error handling here when no games are available to be returned to the user
-
+            //
+            if (finalResults.length <= 0) {
+                setNoGame(true);
+            }
         };
 
         const apiKey = `92bb52f637714b219136e934ac1b2969`;
@@ -131,11 +136,11 @@ const Form = () => {
 
     // An array to hold the user's checked values that are to be submitted
     const checkedTags = [];
+    const checkboxes = document.querySelectorAll('.tag-checkbox');
 
     // A function that returns the currently checked values when called
     const getCheckedValues = () => {
         const checkedValues = [];
-        const checkboxes = document.querySelectorAll('.tag-checkbox');
 
         checkboxes.forEach((checkbox) => {
             if (checkbox.checked) {
@@ -166,6 +171,27 @@ const Form = () => {
         setUserPlatform(platformValue);
         setUserGenre(genreValue);
         setUserTags(tagsValue);
+        // Set noGame back to false
+        setNoGame(false);
+    };
+
+    // Clear form button
+    const clearForm = (event) => {
+        event.preventDefault();
+        // Reset state for each form element value
+        setPlatformValue('');
+        setGenreValue('');
+        setTagsValue([]);
+        // Reset state for user's submitted choices
+        setUserPlatform('');
+        setUserGenre('');
+        setUserTags([]);
+        // Reset checkboxes
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                checkbox.click();
+            }
+        });
     };
 
     // When toGamePage is set to true, and suggestedGame has a value, redirect to the game info page for the suggested game
@@ -175,7 +201,7 @@ const Form = () => {
 
     return (
         <div className="form-container">
-            <form action="" onSubmit={formSubmit}>
+            <form action="" onSubmit={formSubmit} id="game-form">
                 <h2>Let's find you a game!</h2>
 
                 <label htmlFor="platform">How do you like to play?</label>
@@ -214,7 +240,9 @@ const Form = () => {
                     <option value="platformer">Platformer</option>
                 </select>
 
-                <p>Please select any tags you'd like to add to your search.</p>
+                <p>
+                    Please select any tags you'd like to add to your search. (Warning: selecting too many may result in a game not being found!)
+                </p>
                 <div className="tags-checkboxes">
                     <div className="checkbox-item">
                         <input
@@ -412,7 +440,19 @@ const Form = () => {
                         <label htmlFor="short">Short</label>
                     </div>
                 </div>
-                <button action="submit">Find an indie game!</button>
+                <button action="submit" className="submit">
+                    Find an indie game!
+                </button>
+                <button className="clear-form" onClick={clearForm}>
+                    Clear Form
+                </button>
+
+                {noGame ? (
+                    <p className="error">
+                        Sorry, we can't find any games like that in the database
+                        right now! Why don't you try another search?
+                    </p>
+                ) : null}
             </form>
         </div>
     );
