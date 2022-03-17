@@ -5,9 +5,26 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
+/* Variables */
+:root {
+	/* Fonts */
+	--heading-font: 'Sacramento', cursive;
+	--body-font: 'Montserrat', sans-serif;
+	/* Colours */
+	--main-bg-color: #202224;
+	--section-bg-color: #dbdee2;
+	--accent-color: #76c893;
+}
+
 /* Base Styles */
 html {
 	font-size: 125%; 
+}
+
+body {
+	flex-direction: column; 
+    justify-content: space-between;
+    background-color: var(--main-bg-color);
 }
 
 .wrapper {
@@ -20,21 +37,80 @@ img {
 	max-width: 100%; 
 }
 
+header, .form-container, .game-page {
+	background-color: var(--section-bg-color); 
+	padding: 20px 50px 30px; 
+	margin-top: 40px;
+	border-radius: 10px; 
+}
+
 /* Typography */
 body {
-	font-family: 'Lato', sans-serif;
+	font-family: var(--body-font);
+	color: black;
+	font-weight: 300; 
 }
 
 h1, h2 {
-	font-family: 'Oswald', sans-serif;
-	text-transform: uppercase; 
+	font-family: var(--heading-font); 
 	letter-spacing: 0.07rem; 
+	margin-top: 20px;
+	margin-bottom: 25px; 
 }
 
 h1 {
-	font-size: 3rem; 
+	font-size: 5rem; 
 }
 
 h2 {
+	font-size: 3rem; 
+}
+
+h3 {
 	font-size: 2rem; 
+	font-family: var(--body-font);
+	text-transform: uppercase;
+}
+
+p {
+	line-height: 1.4rem; 
+}
+
+a {
+	text-decoration: none;
+	padding-bottom: 2px;
+	border-bottom: 2px solid transparent; 
+	color: var(--body-font);
+	font-weight: 500; 
+	transition: 0.3s; 
+}
+
+a:hover,
+a:focus {
+	border-bottom: 2px solid var(--accent-color);
+}
+
+/* Header */
+
+/* Form */
+
+/* Game Page */
+
+/* Footer */
+footer {
+	display: flex;
+	flex-direction: column; 
+	align-items: center;
+	padding: 10px 0px;
+	margin-top: 45px; 
+}
+
+footer p {
+	color: var(--section-bg-color);
+	font-size: 0.85rem; 
+	margin: 0;
+}
+
+footer .small-copy {
+	font-size: 0.7rem; 
 }

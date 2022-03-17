@@ -28,7 +28,7 @@ const GamePage = () => {
         <section className="game-page">
             <div className="main-info">
                 <div className="text-container">
-                    <h2>{name}</h2>
+                    <h3>{name}</h3>
                     <p className="release-date">
                         <span>Release Date:</span> {released}
                     </p>
