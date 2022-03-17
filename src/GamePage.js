@@ -1,11 +1,17 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import firebase from './firebase';
+import { getDatabase, ref, set } from 'firebase/database';
 
 const GamePage = () => {
     // Stateful variables to hold the game details returned by the API
     const [gameDetails, setGameDetails] = useState({});
     const [stores, setStores] = useState([]);
+
+    // Stateful variables for user reviews
+    const [nameInput, setNameInput] = useState('');
+    const [reviewInput, setReviewInput] = useState('');
 
     const { gameId } = useParams();
 
@@ -25,6 +31,31 @@ const GamePage = () => {
     const { name, released, background_image, description, website } =
         gameDetails;
 
+    const handleNameChange = (event) => {
+        setNameInput(event.target.value);
+    };
+
+    const handleReviewChange = (event) => {
+        setReviewInput(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        // Create a reference to our database
+        const database = getDatabase(firebase);
+
+        set(ref(database, gameId + nameInput), {
+            game: name,
+            game_id: gameId,
+            username: nameInput,
+            review: reviewInput,
+        });
+
+        setNameInput('');
+        setReviewInput('');
+    };
+
     return (
         <section className="game-page">
             <h3>{name}</h3>
@@ -39,6 +70,7 @@ const GamePage = () => {
                     </a>
                 </p>
             ) : null}
+
             <div className="main-info">
                 <div className="img-container">
                     <img src={background_image} alt={`Game art for ${name}`} />
@@ -51,6 +83,7 @@ const GamePage = () => {
                     ></p>
                 </div>
             </div>
+
             <div className="store-container">
                 <p>Available at:</p>
                 <ul className="stores">
@@ -63,6 +96,46 @@ const GamePage = () => {
                     })}
                 </ul>
             </div>
+
+            <div className="review-form">
+                <p className="review-instructions">
+                    Played {name}? Leave a review!
+                </p>
+                <form action="" name="review-form" id="review-form">
+                    <label htmlFor="name" className="sr-only">
+                        Name
+                    </label>
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="My name"
+                        onChange={handleNameChange}
+                        value={nameInput}
+                    />
+                    <label htmlFor="review" className="sr-only">
+                        Review Text
+                    </label>
+                    <input
+                        type="textarea"
+                        name="review"
+                        id="review"
+                        placeholder="This game was..."
+                        onChange={handleReviewChange}
+                        value={reviewInput}
+                    />
+                    <button onClick={handleSubmit}>Submit my review</button>
+                </form>
+            </div>
+
+            <div className="reviews-link-container">
+                <p className="reviews-link">
+                    <span className="emoji">💌</span>
+                    {` `}
+                    <Link to="/reviews">See all user reviews</Link>
+                </p>
+            </div>
+
             <div className="back-to-homepage">
                 <span className="emoji">👉</span> <Link to="/">Back</Link>
             </div>

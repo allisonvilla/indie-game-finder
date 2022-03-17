@@ -182,10 +182,6 @@ const Form = () => {
         setPlatformValue('');
         setGenreValue('');
         setTagsValue([]);
-        // Reset state for user's submitted choices
-        setUserPlatform('');
-        setUserGenre('');
-        setUserTags([]);
         // Reset checkboxes
         checkboxes.forEach((checkbox) => {
             if (checkbox.checked) {

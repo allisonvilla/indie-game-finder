@@ -37,7 +37,7 @@ img {
 	max-width: 100%; 
 }
 
-header, .form-container, .game-page {
+header, .form-container, .game-page, .review-page {
 	background-color: var(--section-bg-color); 
 	padding: 25px 60px 40px; 
 	margin-top: 50px;
@@ -92,6 +92,13 @@ a:focus {
 	border-bottom: 2px solid var(--accent-color);
 }
 
+/* Header */
+.reviews-link-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center; 
+}
+
 /* Form */
 form {
 	display: flex;
@@ -99,7 +106,7 @@ form {
 }
 
 label {
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 select {
@@ -133,7 +140,7 @@ input[type="checkbox"] {
 	margin-right: 5px;
 }
 
-form button.submit {
+form button {
 	margin-top: 25px; 
 	font-family: var(--body-font);
 	padding: 15px 30px; 
@@ -145,18 +152,19 @@ form button.submit {
 	cursor: pointer;
 }
 
-form button.submit:hover, 
-form button.submit:focus {
+form button:hover, 
+form button:focus {
 	border: 2px solid var(--accent-color);
 	border-radius: 5px;
 	color: var(--accent-color);
 }
 
 form button.clear-form {
-	margin-top: 25px; 
+	margin-top: 10px; 
 	border: none;
 	border-bottom: 2px solid transparent; 
 	background-color: transparent;
+	color: var(--main-bg-color);
 	font-family: var(--body-font);
 	cursor: pointer;
 	padding-bottom: 2px;
@@ -222,8 +230,59 @@ ul.stores li {
 	width: 50%;
 }
 
+.review-form {
+	border: 1px solid var(--main-bg-color);
+	padding: 40px 50px 50px; 
+	margin-top: 50px;
+}
+
+.review-instructions {
+	margin: 0; 
+	margin-bottom: 10px;
+	font-weight: 400;
+}
+
+.review-form input {
+	border: none;
+	border-bottom: 1px solid var(--main-bg-color);
+	background-color: transparent;
+	font-family: var(--body-font);
+	outline: none; 
+	padding: 10px 10px;
+	margin-bottom: 10px;
+}
+
 .back-to-homepage {
 	margin-top: 50px; 
+}
+
+/* Reviews Page */
+.reviews-container {
+	display: flex;
+	flex-wrap: wrap; 
+	justify-content: space-around;
+	margin-top: 40px;
+}
+
+.reviews-container div {
+	border: 1px solid var(--main-bg-color);
+	padding: 10px 40px; 
+	width: 45%;
+	margin-bottom: 40px;
+}
+
+.reviews-container div h3 {
+	font-size: 2rem;
+}
+
+.reviews-container a {
+	border-bottom: 2px solid transparent; 
+	transition: 0.3s; 
+}
+
+.reviews-container a:hover,
+.reviews-container a:focus {
+	border-bottom: 2px solid var(--accent-color);
 }
 
 /* Footer */
@@ -254,6 +313,10 @@ footer .small-copy {
 	.checkbox-item {
 		width: 33%;
 	}
+
+	.reviews-container div {
+		width: 95%;
+	}
 }
 
 @media (max-width: 940px) {
@@ -279,7 +342,7 @@ footer .small-copy {
 		font-size: 4rem; 
 	}
 
-	header, .form-container, .game-page {
+	header, .form-container, .game-page, .review-page {
 		padding: 25px 35px 40px; 
 		margin-top: 50px;
 	}
@@ -290,7 +353,7 @@ footer .small-copy {
 		width: 95%;
 	}
 
-	header, .form-container, .game-page {
+	header, .form-container, .game-page, .review-page {
 		padding: 25px 30px 40px; 
 		margin-top: 50px;
 	}
@@ -299,6 +362,14 @@ footer .small-copy {
 		width: 100%;
 		font-size: 1.2rem;
 		margin-bottom: 5px;
+	}
+
+	.review-form {
+		padding: 20px 30px;
+	}
+
+	.reviews-container div {
+		width: 100%;
 	}
 }
 

@@ -1,24 +1,43 @@
 import './index.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 // Import components
 import Form from './Form';
 import GamePage from './GamePage';
+import UserReviews from './UserReviews';
 
 function App() {
     return (
         <div className="App">
             <div className="wrapper">
                 <header>
-                    <h1>Indie Game Finder</h1>
+                    <Link to="/">
+                        <h1>Indie Game Finder</h1>
+                    </Link>
                     <div className="about-container">
-                        <p>Independent (or indie) games are created by individual developers or smaller game studios without the support of larger game publishers. As a result, they're often unique, community-driven, and made with a lot of heart. 💖</p>
-                        <p>Use this app to find an indie game that suits your tastes! 🎮</p>
+                        <p>
+                            Independent (or indie) games are created by
+                            individual developers or smaller game studios
+                            without the support of larger game publishers. As a
+                            result, they're often unique, community-driven, and
+                            made with a lot of heart. 💖
+                        </p>
+                        <p>
+                            Use this app to find an indie game that suits you and leave a review if you've played it! 🎮
+                        </p>
+                        <div className="reviews-link-container">
+                            <p className="reviews-link">
+                                <span className="emoji">💌</span>
+                                {` `}
+                                <Link to="/reviews">See all user reviews</Link>
+                            </p>
+                        </div>
                     </div>
                 </header>
 
                 <Routes>
                     <Route path="/" element={<Form />} />
                     <Route path="/:gameId" element={<GamePage />} />
+                    <Route path="/reviews" element={<UserReviews />} />
                 </Routes>
             </div>
 
