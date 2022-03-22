@@ -13,6 +13,9 @@ const GamePage = () => {
     const [nameInput, setNameInput] = useState('');
     const [reviewInput, setReviewInput] = useState('');
 
+    // Stateful variable for form validation failure
+    const [formFail, setFormFail] = useState(false);
+
     const { gameId } = useParams();
 
     // Make an API call for the game details
@@ -42,18 +45,24 @@ const GamePage = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Create a reference to our database
-        const database = getDatabase(firebase);
-
-        set(ref(database, gameId + nameInput), {
-            game: name,
-            game_id: gameId,
-            username: nameInput,
-            review: reviewInput,
-        });
-
-        setNameInput('');
-        setReviewInput('');
+        // Check that the user has entered at least one character for their name and at least two characters for the review input
+        if (nameInput.length < 1 || reviewInput.length < 2) {
+            setFormFail(true);
+        } else {
+            // Create a reference to our database
+            const database = getDatabase(firebase);
+    
+            set(ref(database, gameId + nameInput), {
+                game: name,
+                game_id: gameId,
+                username: nameInput,
+                review: reviewInput,
+            });
+            
+            setNameInput('');
+            setReviewInput('');
+            setFormFail(false);
+        }
     };
 
     return (
@@ -112,7 +121,6 @@ const GamePage = () => {
                         placeholder="My name"
                         onChange={handleNameChange}
                         value={nameInput}
-                        required 
                     />
                     <label htmlFor="review" className="sr-only">
                         Review Text
@@ -123,10 +131,15 @@ const GamePage = () => {
                         id="review"
                         placeholder="This game was..."
                         onChange={handleReviewChange}
-                        value={reviewInput} 
-                        required 
+                        value={reviewInput}
                     />
                     <button onClick={handleSubmit}>Submit my review</button>
+
+                    {
+                        formFail
+                            ? <p className="review-error">Your review seems a little short! Please enter more than two characters.</p>
+                            : null 
+                    }
                 </form>
             </div>
 
