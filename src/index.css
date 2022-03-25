@@ -87,8 +87,7 @@ a {
 	transition: 0.3s; 
 }
 
-a:hover,
-a:focus {
+a:hover {
 	border-bottom: 2px solid var(--accent-color);
 }
 
@@ -152,8 +151,7 @@ form button {
 	cursor: pointer;
 }
 
-form button:hover, 
-form button:focus {
+form button:hover {
 	border: 2px solid var(--accent-color);
 	border-radius: 5px;
 	color: var(--accent-color);
@@ -172,8 +170,7 @@ form button.clear-form {
 	transition: 0.3s; 
 }
 
-form button.clear-form:hover,
-form button.clear-form:focus {
+form button.clear-form:hover {
 	color: var(--accent-color);
 }
 
@@ -286,8 +283,7 @@ ul.stores li {
 	transition: 0.3s; 
 }
 
-.reviews-container a:hover,
-.reviews-container a:focus {
+.reviews-container a:hover {
 	border-bottom: 2px solid var(--accent-color);
 }
 
