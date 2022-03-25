@@ -279,12 +279,12 @@ ul.stores li {
 }
 
 .reviews-container a {
-	border-bottom: 2px solid transparent; 
 	transition: 0.3s; 
 }
 
 .reviews-container a:hover {
-	border-bottom: 2px solid var(--accent-color);
+	border-bottom: 2px solid transparent;
+    color: var(--accent-color);
 }
 
 /* Footer */
