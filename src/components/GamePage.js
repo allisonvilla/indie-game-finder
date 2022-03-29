@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import firebase from './firebase';
+import firebase from '../firebase';
 import { getDatabase, ref, set } from 'firebase/database';
 
 const GamePage = () => {
