@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'; 
 import { Navigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from 'axios'; 
 
 // Import API key
 import apiKey from '../api';

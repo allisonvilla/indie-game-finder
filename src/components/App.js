@@ -2,7 +2,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 // Import components
 import Form from './Form';
 import GamePage from './GamePage';
-import UserReviews from './UserReviews';
+import UserReviews from './UserReviews'; 
 
 function App() {
     return (

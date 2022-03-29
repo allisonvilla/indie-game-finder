@@ -22,7 +22,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # APIs and Database Keys
-firebase.js
+firebaseConfig.js
 api.js
 
 # README WIP
