@@ -13,9 +13,9 @@ Users are also able to leave a review on each game page and view reviews written
 3. Install dependencies - in your terminal, run `npm install`
 4. Create a [Firebase app](https://firebase.google.com/)
 5. In your Firebase app, create a Realtime Database
-6. Within the `/src` folder of the project directory, create `firebaseConfig.js` and initialize your Firebase Realtime Database app within a variable called `firebase` - export this variable
+6. Within the `/src` folder of the project directory, create `firebaseConfig.js` and initialize your Firebase Realtime Database within a variable called `firebase` - export this variable
 7. Obtain an API key from [RAWG Video Games Database API](https://rawg.io/apidocs)
-8. Within the `/src` folder of the project directory, create `api.js` and create a variable to store your API key - export this variable
+8. Within the `/src` folder of the project directory, create `api.js` and create a variable `apiKey` to store your API key as a string value - export this variable
 9. Within your terminal, run `npm start` to run the app on your local server  
 
 ## Dependencies
@@ -33,5 +33,4 @@ Users are also able to leave a review on each game page and view reviews written
 - Understanding the importance of app architecture planning
 
 ## Preview
-<!-- gif preview here -->
 ![indie-game-finder-preview](https://user-images.githubusercontent.com/85526859/160727349-770883b3-c505-4077-9f05-bfffb95d321e.gif)
