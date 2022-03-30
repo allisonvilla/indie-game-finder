@@ -26,6 +26,3 @@ yarn-error.log*
 # APIs and Database Keys
 firebaseConfig.js
 api.js
-
-# README WIP
-README.md
