@@ -1,14 +1,11 @@
 # Indie Game Finder
-### [Live Link](https://indie-game-finder.netlify.app/)
-<br>
-
-<!-- gif preview here -->
-![indie-game-finder-preview](https://user-images.githubusercontent.com/85526859/160727349-770883b3-c505-4077-9f05-bfffb95d321e.gif)
 
 ## About
 Indie Game Finder is an application that helps users find an indie game to play that suits their preferences. It filters through paginated data returned by [RAWG Video Games Database API](https://rawg.io/apidocs) to a display a game to the user based on their chosen parameters.
 
 Users are also able to leave a review on each game page and view reviews written by other users on the reviews page. Reviews are stored in a Firebase Realtime Database. 
+
+### [Live Link](https://indie-game-finder.netlify.app/ "Live link")
 <br>
 
 ## Running this project locally
@@ -35,3 +32,7 @@ Users are also able to leave a review on each game page and view reviews written
 - Using React Router to create a single-page application 
 - Understanding functional programming
 - Understanding the importance of app architecture planning
+
+## Preview
+<!-- gif preview here -->
+![indie-game-finder-preview](https://user-images.githubusercontent.com/85526859/160727349-770883b3-c505-4077-9f05-bfffb95d321e.gif)
