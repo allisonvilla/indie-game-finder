@@ -14,8 +14,33 @@ Users are also able to leave a review on each game page and view reviews written
 4. Create a [Firebase app](https://firebase.google.com/)
 5. In your Firebase app, create a Realtime Database
 6. Within the `/src` folder of the project directory, create `firebaseConfig.js` and initialize your Firebase Realtime Database within a variable called `firebase` - export this variable
+
+```js
+// firebaseConfig.js
+
+import { initializeApp } from 'firebase/app';
+
+const firebaseConfig = {
+    // your Firebase config details here
+};
+
+// Initialize Firebase
+const firebase = initializeApp(firebaseConfig);
+
+export default firebase; 
+```
+
 7. Obtain an API key from [RAWG Video Games Database API](https://rawg.io/apidocs)
 8. Within the `/src` folder of the project directory, create `api.js` and create a variable `apiKey` to store your API key as a string value - export this variable
+
+```js
+// api.js
+
+const apiKey = `12345`; // your actual API key here
+
+export default apiKey; 
+```
+
 9. Within your terminal, run `npm start` to run the app on your local server  
 
 ## Dependencies
