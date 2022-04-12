@@ -30,18 +30,35 @@ const firebase = initializeApp(firebaseConfig);
 export default firebase; 
 ```
 
-7. Obtain an API key from [RAWG Video Games Database API](https://rawg.io/apidocs)
-8. Within the `/src` folder of the project directory, create `api.js` and create a variable `apiKey` to store your API key as a string value - export this variable
-
+7. Within the root folder of the project directory, create a `.env` file
+8. Within the `.env` file, create an environment variable called `REACT_APP_FIREBASE_KEY` and store the API key from your Firebase config in it 
 ```js
-// api.js
+// .env
 
-const apiKey = `12345`; // your actual API key here
-
-export default apiKey; 
+REACT_APP_FIREBASE_KEY=12345 // your actual Firebase key here
 ```
 
-9. Within your terminal, run `npm start` to run the app on your local server  
+9. Within `firebaseConfig.js`, replace your API key with `process.env.REACT_APP_FIREBASE_KEY` 
+```js
+// firebaseConfig.js
+
+const firebaseConfig = {
+    apiKey: process.env.REACT_APP_FIREBASE_KEY,
+
+    // The rest of your config here
+};
+```
+
+10. Obtain an API key from [RAWG Video Games Database API](https://rawg.io/apidocs)
+11. Within `.env`, create an environment variable called `REACT_APP_API_KEY` and store your API key in it
+
+```js
+// .env 
+
+REACT_APP_API_KEY=12345 // your actual API key here
+```
+
+12. Within your terminal, run `npm start` to run the app on your local server  
 
 ## Dependencies
 - React
@@ -56,6 +73,7 @@ export default apiKey;
 - Using React Router to create a single-page application 
 - Understanding functional programming
 - Understanding the importance of app architecture planning
+- Using environment variables
 
 ## Preview
 ![indie-game-finder-preview](https://user-images.githubusercontent.com/85526859/160727349-770883b3-c505-4077-9f05-bfffb95d321e.gif)
