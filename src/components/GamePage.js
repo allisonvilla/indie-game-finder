@@ -20,7 +20,7 @@ const GamePage = () => {
 
     // Make an API call for the game details
     useEffect(() => {
-        const apiKey = `92bb52f637714b219136e934ac1b2969`;
+        const apiKey = process.env.REACT_APP_API_KEY;
 
         axios
             .get(`https://api.rawg.io/api/games/${gameId}?key=${apiKey}`)

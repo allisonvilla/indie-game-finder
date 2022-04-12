@@ -2,9 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios'; 
 
-// Import API key
-import apiKey from '../api';
-
 const Form = () => {
     // Stateful variable to hold the game that will be displayed to the user
     const [suggestedGame, setSuggestedGame] = useState({});
@@ -84,6 +81,9 @@ const Form = () => {
                 setNoGame(true);
             }
         };
+
+        // Store API key
+        const apiKey = process.env.REACT_APP_API_KEY;
 
         // An array that will hold the total contents of each API call
         const apiArray = [];

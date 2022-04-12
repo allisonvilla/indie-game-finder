@@ -24,5 +24,4 @@ yarn-error.log*
 *.gif
 
 # APIs and Database Keys
-firebaseConfig.js
-api.js
+.env
