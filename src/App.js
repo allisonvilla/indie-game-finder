@@ -61,16 +61,6 @@ function App() {
                         RAWG Video Games Database API
                     </a>
                 </p>
-                <p className="small-copy">
-                    Created at{` `}
-                    <a
-                        href="https://junocollege.com/"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Juno College of Technology
-                    </a>
-                </p>
             </footer>
         </div>
     );
